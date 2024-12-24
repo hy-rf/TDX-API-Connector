@@ -33,10 +33,7 @@ export default class RailController {
       }
     );
     if (fetchTokenRes.status != 200) {
-      res.send({
-        code: 400,
-        message: "Token Not Found",
-      });
+      res.status(400).send("fail");
       return;
     }
     let token = await fetchTokenRes.json();
@@ -48,10 +45,7 @@ export default class RailController {
     const utc8TimeNowAray: string[] = utc8TimeNow.split(",")[0].split("/");
     const utc8TimeNowToStore = `${utc8TimeNowAray[2]}-${utc8TimeNowAray[0]}-${utc8TimeNowAray[1]}`;
     db.collection("setting").doc(utc8TimeNowToStore).set(token);
-    res.send({
-      code: 200,
-      message: "Success",
-    });
+    res.status(200).send(token);
   }
   async getRailStations(req: Request, res: Response) {
     // get today's access token
