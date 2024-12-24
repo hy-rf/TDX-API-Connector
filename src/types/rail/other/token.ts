@@ -4,4 +4,5 @@ export default interface token {
   scope: string;
   token_type: string;
   expires_in: number;
+  "not-before-policy": number;
 }
